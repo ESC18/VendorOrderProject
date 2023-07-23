@@ -1,26 +1,26 @@
-@{
-    ViewData["Title"] = "Vendor Details";
-}
+@model VendorModel.Vendor
 
-<h1>Vendor Details</h1>
-<h3>@Model.Name</h3>
-<p>@Model.Description</p>
-
-<h4>Orders</h4>
-@if (Model.Orders.Count > 0)
-{
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vendor Details</title>
+</head>
+<body>
+    <h1>Vendor Details</h1>
+    <h2>@Model.Name</h2>
+    <p>@Model.Description</p>
+    <h3>Orders:</h3>
     <ul>
         @foreach (var order in Model.Orders)
         {
-            <li>@order.Title - @order.Price</li>
+            <li>
+                Order ID: @order.Id <br />
+                Title: @order.Title <br />
+                Description: @order.Description <br />
+                Price: @order.Price <br />
+            </li>
         }
     </ul>
-}
-else
-{
-    <p>No orders found for this vendor.</p>
-}
-
-<p>
-    <a asp-controller="Orders" asp-action="Create" asp-route-vendorId="@Model.Id" class="btn btn-primary">Create New Order</a>
-</p>
+</body>
+</html>

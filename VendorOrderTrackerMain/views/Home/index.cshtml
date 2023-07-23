@@ -1,14 +1,16 @@
+@{
+    ViewData["Title"] = "Pierre's Bakery - Vendor/Order Tracker";
+}
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Pierre's Bakery - Vendor/Order Tracker</title>
+    <title>@ViewData["Title"]</title>
 </head>
 <body>
     <h1>Welcome Pierre!</h1>
-    <a href='/vendors/create'>Add a new Vendor</a>
-    <a href='/vendors'>View Vendors List</a>
-    <a href='/orders/create'>Add a new Order</a>
-    <a href='/'>Go back to Home</a>
+    <a href="/Vendors/Create">Add a new Vendor</a>
+    <a href="/Vendors">See list of Vendors</a>
 </body>
 </html>

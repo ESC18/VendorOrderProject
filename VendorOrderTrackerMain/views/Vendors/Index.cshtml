@@ -1,0 +1,24 @@
+@model List<VendorModel.Vendor>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewData["Title"]Vendor List</title>
+</head>
+<body>
+    <h1>@ViewData["Title"]</h1>
+    <ul>
+        @foreach (var vendor in Model)
+        {
+            <li>
+                @vendor.Name - Description: @vendor.Description
+                <form controller="Orders" method="get" action="/vendors/@vendor.Id/createorder">
+                    <button type="submit">Add Order</button>
+                </form>
+            </li>
+        }
+    </ul>
+    <a href="/">Home</a>
+</body>
+</html>
