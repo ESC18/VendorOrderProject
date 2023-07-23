@@ -6,13 +6,7 @@ using VendorModel;
 
 public class OrdersController : Controller
 {
-    [HttpGet("/vendors/{vendorId}/orders")]
-    public ActionResult Index(int vendorId)
-    {
-        Vendor vendor = VendorsController.VendorsList.Find(v => v.Id == vendorId);
-        List<Order> orders = vendor?.Orders ?? new List<Order>();
-        return View(orders);
-    }
+
 
     [HttpGet("/vendors/{vendorId}/orders/create")]
     public ActionResult Create(int vendorId)

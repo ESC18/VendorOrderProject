@@ -17,13 +17,6 @@ public class VendorsController : Controller
         return View(_vendors);
     }
 
-    [HttpGet("/vendors/{id}")]
-    public ActionResult Details(int id)
-    {
-        Vendor vendor = _vendors.FirstOrDefault(v => v.Id == id);
-        return View(vendor);
-    }
-
     [HttpGet("/vendors/create")]
     public ActionResult Create()
     {
@@ -31,15 +24,13 @@ public class VendorsController : Controller
     }
 
     [HttpPost("/vendors/create")]
-    public ActionResult Create(Vendor vendor)
+    public ActionResult CreateVendor(Vendor vendor)
     {
-        if (vendor != null)
-        {
-            vendor.Id = _vendors.Count + 1;
-            _vendors.Add(vendor);
-        }
+        vendor.Id = _vendors.Count + 1;
+        _vendors.Add(vendor);        
         return RedirectToAction("Index");
     }
+
 
     [HttpGet("/vendors/{vendorId}/createorder")]
     public ActionResult CreateOrder(int vendorId)
@@ -49,13 +40,19 @@ public class VendorsController : Controller
     }
 
     [HttpPost("/vendors/{vendorId}/createorder")]
-    public ActionResult CreateOrder(int vendorId, Order order)
+    public ActionResult CreateOrder(int vendorId, OrderModel.Order order)
     {
         Vendor vendor = VendorsList.Find(v => v.Id == vendorId);
         if (vendor == null)
         {
             return NotFound();
         }
+
+        if (vendor.Orders == null)
+        {
+            vendor.Orders = new List<OrderModel.Order>();
+        }
+
         order.Id = vendor.Orders.Count + 1;
         order.VendorId = vendorId;
         vendor.Orders.Add(order);
