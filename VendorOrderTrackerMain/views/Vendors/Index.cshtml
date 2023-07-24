@@ -12,7 +12,7 @@
         @foreach (var vendor in Model)
         {
             <li>
-                @vendor.Name - Description: @vendor.Description
+                @vendor.Name - Vendor Description: @vendor.Description
                 <a href="/vendors/@vendor.Id/createorder">Add Order</a>
                 <ul>
                     @foreach (var order in vendor.Orders)
