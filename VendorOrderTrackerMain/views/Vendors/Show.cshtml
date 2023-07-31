@@ -1,0 +1,23 @@
+@model VendorModel.Vendor
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@Model.Name - Vendor Orders</title>
+</head>
+<body>
+    <h1>@Model.Name - Vendor Orders</h1>
+    <ul>
+        @foreach (var order in Model.Orders)
+        {
+            <li>
+                Order Title: @order.Title <br/>
+                Order Description: @order.Description <br/>
+                Order Price: @order.Price <br/>
+            </li>
+        }
+    </ul>
+    <a href="/Vendors">Back to Vendors</a>
+</body>
+</html>
