@@ -31,7 +31,6 @@ public class VendorsController : Controller
         return RedirectToAction("Index");
     }
 
-
     [HttpGet("/vendors/{vendorId}/createorder")]
     public ActionResult CreateOrder(int vendorId)
     {
@@ -57,5 +56,17 @@ public class VendorsController : Controller
         order.VendorId = vendorId;
         vendor.Orders.Add(order);
         return RedirectToAction("Index");
+    }
+
+    [HttpGet("/vendors/{vendorId}")]
+    public ActionResult Show(int vendorId)
+    {
+        Vendor vendor = VendorsList.Find(v => v.Id == vendorId);
+        if (vendor == null)
+        {
+            return NotFound();
+        }
+
+        return View(vendor);
     }
 }
